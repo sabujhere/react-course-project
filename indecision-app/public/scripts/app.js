@@ -42,41 +42,43 @@ var template = React.createElement(
   )
 );
 
-var user = {
-  name: 'Andrew',
-  age: 26,
-  location: 'Philadelphia'
+var count = 0;
+var SubstractOne = function SubstractOne() {
+  return console.log("-1");
+};
+var Reset = function Reset() {
+  return console.log("Reset");
 };
 
-function getLocaiton(location) {
-  if (location) {
-    return location;
-  } else {
-    return 'Unknown';
-  }
-}
 var templateTwo = React.createElement(
   'div',
   null,
   React.createElement(
     'h1',
     null,
-    user.name
+    'Count: ',
+    count
   ),
   React.createElement(
-    'p',
+    'div',
     null,
-    'Age: ',
-    user.age
+    React.createElement(
+      'button',
+      { onClick: SubstractOne },
+      '-1'
+    )
   ),
   React.createElement(
-    'p',
+    'div',
     null,
-    'Location: ',
-    getLocaiton(user.location)
+    React.createElement(
+      'button',
+      { onClick: Reset },
+      'Reset'
+    )
   )
 );
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);

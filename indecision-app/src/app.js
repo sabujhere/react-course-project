@@ -17,28 +17,18 @@ const template = (
   </div>
 );
 
-const user = {
-  name: 'Andrew',
-  age: 26,
-  location: 'Philadelphia'
-};
+const count = 0;
+const SubstractOne = ()  => console.log("-1");
+const Reset = () => console.log("Reset");
 
-function getLocaiton(location){
-    if(location){
-        return location;
-    } else {
-        return 'Unknown'
-    }
-    
-}
 const templateTwo = (
   <div>
-    <h1>{user.name}</h1>
-    <p>Age: {user.age}</p>
-    <p>Location: {getLocaiton(user.location)}</p>
+    <h1>Count: {count}</h1>
+    <div><button onClick={SubstractOne}>-1</button></div>
+    <div><button onClick={Reset}>Reset</button></div>    
   </div>
 );
 
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
