@@ -1,29 +1,32 @@
 
-
-let showContent = true;
-let content = undefined;
-let buttonContent = 'hide'
-const onToggleContent = ()=>{
-       showContent = !showContent;
-    renderIndecisionApp();
-}
-
-
-
-const renderIndecisionApp = ()=>{
-    const template = (
-      <div>
-        <h1>Visibilty Toggle</h1>
-        <button onClick={onToggleContent}>{showContent ? 'hide content' : 'show details' }</button>        
-       {
-            showContent && (
-                <p>This is my content</p>  
-            )
-       }
-      </div>
-    );
-    const appRoot = document.getElementById('app');
-    ReactDOM.render(template, appRoot);
-  }
-  onToggleContent()
-  renderIndecisionApp();
+class VisibilityToggle extends React.Component {
+    constructor(props) {
+        super(props);
+        this.toggleVisibility = this.toggleVisibility.bind(this);
+        this.state = {
+            visibility:true
+        };
+    };
+    toggleVisibility() {
+        this.setState((prevState)=>{ 
+            return {
+                visibility: !prevState.visibility
+        }})
+    }
+    render() {
+        return (
+            <div>
+                <h1>Visibility Toggle</h1>
+                <button onClick={this.toggleVisibility}>
+                    {this.state.visibility ? 'Hide details' : 'Show details'}
+                </button>
+                {this.state.visibility && (
+                            <div>
+                              <p>Hey. These are some details you can now see!</p>
+                            </div>
+                          )}
+            </div>
+        )
+    }
+};
+ReactDOM.render(<VisibilityToggle />, document.getElementById('app'));
