@@ -32,6 +32,19 @@ const removeExpense = ({id:expenseId} = {}) =>({
     expenseId
     });
 
+
+//set Edit expense
+const editExpense = (id, updates) => ({
+    type: 'EDIT_EXPENSE',
+    id,
+    updates
+});
+
+const setTextFilter = (filterText = '')=> ({
+    type: 'SET_FILTER_TEXT',
+    filterText
+});
+
 const expenseReducedDefaultState = [];
 
 const expenseReducer = (state = expenseReducedDefaultState, action) => {
@@ -43,14 +56,26 @@ const expenseReducer = (state = expenseReducedDefaultState, action) => {
                 action.expense
             ];
         case 'REMOVE_EXPENSE':            
-            return state.filter(( {id }) => id !== action.expenseId)
+            return state.filter(( {id }) => id !== action.expenseId);
+        case 'EDIT_EXPENSE':
+            return state.map((expense)=>{
+                if(expense.id === action.id) {
+                    return {
+                        ...expense,
+                        ...action.updates
+                    };
+                } else {
+                    return expense;
+                };                
+            });
+       
         default:
             return state;
     }
 };
 
 const filtersReducerDefaultState = {
-    test:'',
+    text:'',
     sortBy:'date',
     startDate:undefined,
     endDate:undefined
@@ -58,6 +83,11 @@ const filtersReducerDefaultState = {
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
     switch(action.type) {
+        case 'SET_FILTER_TEXT':
+            return {
+                ...state,
+                text: action.filterText
+            };
         default:
             return state;
     }
@@ -75,9 +105,12 @@ store.subscribe(()=> {
 })
 
 const expenseOne = store.dispatch(addExpense({description:'Rent', amount:100}))
-store.dispatch(addExpense({description:'Coffee', amount:300}))
+const expenseTwo = store.dispatch(addExpense({description:'Coffee', amount:300}))
 
 store.dispatch(removeExpense({id:expenseOne.expense.id}))
+store.dispatch(editExpense(expenseTwo.expense.id, {amount:100}));
+store.dispatch(setTextFilter('rent'));
+store.dispatch(setTextFilter());
 console.log(expenseOne);
 
 const demoState = {
@@ -90,7 +123,7 @@ const demoState = {
     }
     ],
     filters: {
-        test:'rent',
+        text:'rent',
         sortBy:'amount',
         startDate:undefined,
         endDate:undefined
