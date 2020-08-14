@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const ExpenseListItem = ({dispatch, id,description, amount, createdAt}) => (
   <div>
     <h2>{description}</h2>
-    <p>{amount} - {createdAt}</p>
+    <p>Amount: {amount} - CreatedAt:{createdAt}</p>
     <button onClick={(e)=>{
       dispatch(removeExpense({id}))
     }}>Remove</button>
