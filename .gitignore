@@ -25,6 +25,11 @@ coverage
 
 # Dependency directories
 node_modules/
+
+expensify-app/public/bundle.js
+expensify-app/public/bundle.js.map
+expensify-app/public/styles.css
+expensify-app/public/styles.css.map
 jspm_packages/
 
 # TypeScript cache
