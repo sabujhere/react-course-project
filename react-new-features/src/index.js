@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<div>My new content</div>,
+
+const App = (props)=> {
+  const [count, updateCount] = useState(props.count)
+
+
+  return (
+    <div>
+      <p>This current count is {count}</p>
+      <button onClick={()=>updateCount(count + 1)}>+1</button>
+      <button onClick={()=>updateCount(props.count)}>Reset</button>
+      <button onClick={()=>updateCount(count - 1)}>-1</button>
+    </div>
+  )
+}
+App.defaultProps = {
+  count:0
+}
+
+ReactDOM.render(<App count ={ 2 }/>,
   document.getElementById('root')
 );
 
