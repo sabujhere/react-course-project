@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
 
 const NoteApp = () => {
-  const [notes, updateNotes] = useState([])
+  const noteData = JSON.parse(localStorage.getItem('notes'))
+  const [notes, updateNotes] = useState(noteData || [])
   const [title, updateTitle] = useState('')
   const [body, updateBody] = useState('')
 
@@ -24,6 +25,10 @@ const NoteApp = () => {
   const removeNote = (title) =>{
     updateNotes(notes.filter((note) => note.title !== title))
   }
+
+  useEffect(()=>{
+    localStorage.setItem('notes', JSON.stringify(notes))
+  })
   return (
     <div>
       <h1>Notes</h1>
@@ -48,6 +53,9 @@ const NoteApp = () => {
 //   const [count, updateCount] = useState(props.count)
 //   const [text, updateText] = useState('test')
 
+//   useEffect(() =>{
+//     document.title = count
+//   })
 //   return (
 //     <div>
 //       <p>This current {text || 'count'} is {count}</p>
