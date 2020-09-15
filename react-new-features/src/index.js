@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
 
-const NoteApp = () => {
-  const noteData = JSON.parse(localStorage.getItem('notes'))
-  const [notes, updateNotes] = useState(noteData || [])
+ const NoteApp = () => {
+//   const noteData = JSON.parse(localStorage.getItem('notes'))
+  const [notes, updateNotes] = useState([])
   const [title, updateTitle] = useState('')
   const [body, updateBody] = useState('')
 
@@ -27,8 +27,17 @@ const NoteApp = () => {
   }
 
   useEffect(()=>{
+    const noteData = JSON.parse(localStorage.getItem('notes'))
+    if(noteData) {
+      updateNotes(noteData)
+    }
+  }, [])
+
+
+  useEffect(()=>{
     localStorage.setItem('notes', JSON.stringify(notes))
-  })
+  },[notes])
+  
   return (
     <div>
       <h1>Notes</h1>
@@ -54,8 +63,13 @@ const NoteApp = () => {
 //   const [text, updateText] = useState('test')
 
 //   useEffect(() =>{
+//     console.log('useEffect only run once')
+//   }, [])
+
+//   useEffect(() =>{
+//     console.log('useEffect ran')
 //     document.title = count
-//   })
+//   }, [count])
 //   return (
 //     <div>
 //       <p>This current {text || 'count'} is {count}</p>
