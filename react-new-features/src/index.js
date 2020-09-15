@@ -42,11 +42,7 @@ import * as serviceWorker from './serviceWorker';
     <div>
       <h1>Notes</h1>
       {notes.map((note) =>(
-        <div key={note.title}>
-          <h3>{note.title}</h3>     
-          <p>{note.body}</p>     
-          <button onClick={() =>removeNote(note.title)}>X</button>
-        </div>
+       <Note key={note.title} note={note} removeNote={removeNote}/>
       ))}
       <p>Add note</p>
       <form onSubmit={addNote}>
@@ -58,6 +54,23 @@ import * as serviceWorker from './serviceWorker';
   )
 }
 
+
+const Note = ({note, removeNote}) =>{
+  useEffect(()=>{
+    console.log('Setting up effect!')
+
+    return ()=>{
+      console.log('Cleaning up effect!')
+    }
+  }, [])
+  return (
+    <div >
+      <h3>{note.title}</h3>     
+      <p>{note.body}</p>     
+      <button onClick={() =>removeNote(note.title)}>X</button>
+    </div>
+  )
+}
 // const App = (props)=> {
 //   const [count, updateCount] = useState(props.count)
 //   const [text, updateText] = useState('test')
