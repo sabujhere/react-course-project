@@ -2,7 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<div>This is Todo app</div>,
+const TodoApp = () =>{
+ return (
+  <div>
+  Add todo
+  </div>
+ )
+}
+
+ReactDOM.render(<TodoApp/>,
   document.getElementById('root')
 );
 
