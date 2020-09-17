@@ -3,21 +3,34 @@ import todosContext from '../context/todos-context';
 
 const Todo = ({todo}) =>{
     const { dispatch } = useContext(todosContext)
-    const updateTodo = (e) =>{
+
+    const toggleTodo = (e) =>{
         dispatch(
             {
-                type: 'UPDATE_TODO',
-                name: todo.name,
-                updates:{
-                    completed:e.target.checked
-                }
+                type: 'TOGGLE_TODO',
+                name: todo.name
             }
         )
     }
+
+    const removeTodo = (e) =>{
+        dispatch(
+            {
+                type: 'REMOVE_TODO',
+                name: todo.name
+            }
+        )
+    }
+
     return (
         <div >        
-        <input type="checkbox" checked={todo.completed} onChange={(e)=>updateTodo(e)}/>
-        <label>{todo.name}</label>
+            <input 
+                type="checkbox" 
+                checked={todo.completed} 
+                onChange={(e)=>toggleTodo(e)}
+                />
+            <label>{todo.name}</label>
+            <button onClick={(e)=>removeTodo(e)}>Remove</button>
         </div>
     )
 }

@@ -14,11 +14,14 @@ const AddTodoForm = () =>{
     };
 
     return (
-        <div>
-            <p>Add Todo</p>
+        <div>           
             <form  onSubmit={addTodo}>
-                <input type="text" value={name} onChange={(e)=>{updateName(e.target.value)}}/>
-                <button >Add</button>
+                <input 
+                    type="text" 
+                    value={name}                     
+                    placeholder="something to do"
+                    onChange={(e)=>{updateName(e.target.value)}}/>
+                <button> Add Todo </button>
             </form>
         </div>
     );

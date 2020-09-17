@@ -8,18 +8,15 @@ const todoReducer = (state, action) =>{
                 ...state,
                 {name:action.name, completed:false}
             ];
-        case 'UPDATE_TODO':
+        case 'TOGGLE_TODO':
             return state.map((todo)=>{
                 if(todo.name === action.name){
-                    return {
-                        ...todo,
-                        ...action.updates
-                    }
+                    todo.completed = !todo.completed;
                 }
-                else {
-                    return todo;
-                  };
+                return todo;                  
             })
+        case 'REMOVE_TODO':
+            return state.filter((todo)=>todo.name !== action.name)
             
         default:
             return state;
