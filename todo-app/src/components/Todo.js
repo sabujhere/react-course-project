@@ -9,8 +9,7 @@ const Todo = ({todo}) =>{
             {
                 type: 'TOGGLE_TODO',
                 name: todo.name
-            }
-        )
+            })
     }
 
     const removeTodo = (e) =>{
@@ -18,8 +17,7 @@ const Todo = ({todo}) =>{
             {
                 type: 'REMOVE_TODO',
                 name: todo.name
-            }
-        )
+            })
     }
 
     return (
