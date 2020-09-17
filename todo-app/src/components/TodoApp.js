@@ -23,7 +23,7 @@ const TodoApp = () =>{
 
    return (
     <TodoContext.Provider value={{todos, dispatch}}>
-      <h1>ToDos</h1>
+      <h1>To-do App</h1>
       <TodoList/>
       <AddTodoForm/>
     </TodoContext.Provider>
