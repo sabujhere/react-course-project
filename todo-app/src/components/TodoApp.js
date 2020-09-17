@@ -3,6 +3,7 @@ import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
 import TodoContext from '../context/todos-context';
 import todoReducer from '../reducers/todos';
+import TodoListFilter from '../components/TodoListFilters';
 
 const TodoApp = () =>{  
     const [todos, dispatch] = useReducer(todoReducer, [])
@@ -24,6 +25,7 @@ const TodoApp = () =>{
    return (
     <TodoContext.Provider value={{todos, dispatch}}>
       <h1>To-do App</h1>
+      <TodoListFilter/>
       <TodoList/>
       <AddTodoForm/>
     </TodoContext.Provider>
