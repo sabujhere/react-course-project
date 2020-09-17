@@ -1,14 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-
-const TodoApp = () =>{
- return (
-  <div>
-  Add todo
-  </div>
- )
-}
+import TodoApp from './components/TodoApp';
 
 ReactDOM.render(<TodoApp/>,
   document.getElementById('root')
