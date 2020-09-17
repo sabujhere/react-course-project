@@ -18,8 +18,18 @@ const TodoListFilters = () =>{
 
     return (
         <div>
-            <input type="text" value={filters.text} onChange={(e)=>onTextChange(e)}/>
-            <input type="checkbox" checked={filters.hideComplete} onChange={(e)=>{onToggleHideCOmplted(e)}}/>
+            <input 
+                type="text" 
+                value={filters.text} 
+                onChange={(e)=>onTextChange(e)}
+                placeholder="Filter to dos"/>
+
+            <input 
+                type="checkbox" 
+                checked={filters.hideComplete} 
+                onChange={(e)=>{onToggleHideCOmplted(e)}}/>
+
+            <label>Hide Completed</label>
         </div>
     )
 }
